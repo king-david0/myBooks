@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>myBooks</title>
+    <link rel="icon" href="/assets/icons/book-solid.svg" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="header">
+      <div class="tab-view">
+        <div class="tab-button" id="nav-button">
+          <img src="/images/align-left-solid.svg" alt="Navigation" />
+        </div>
+        <div class="tab-button" id="add-button">
+          <p>Add new book</p>
+          <img src="/images/circle-plus-solid.svg" alt="Add" />
+        </div>
+      </div>
+      <div class="book-search">
+        <input
+        autocomplete="off"
+          draggable="false"
+          spellcheck="false"
+          id="book-search"
+          type="text"
+          placeholder="Search Reviewed Books . . ."
+        />
+        <div id="loading-dots" class="loading-dots hidden">
+          <span></span><span></span><span></span>
+        </div>
+        <div id="suggestions"></div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <div class="books">
+        <div id="books-container">
+          <!-- Dynamic content will be inserted here -->
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <% if (Array.isArray(books)) { %>
+        <% books.forEach((book) => { %>
+          <!-- Render multiple books -->
+          <div class="booksContent">
+            <div class="bookReview" id="<%= book.id %>">
+              <img 
+                src="<%= book.thumbnail ? book.thumbnail : 'images/image-regular.svg' %>" 
+                alt="Book cover" 
+                class="book-thumbnail"
+                onerror="this.src='images/image-regular.svg';"
+              />
+              <div class="writeup">
+                <h2><%= book.title %></h2>
+                <p><%= book.review %></p>
+                <p><%= new Date(book.published_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %></p>
+              </div>
+            </div>
+    
+            <div class="author" id="<%= book.id %>">
+              <div class="writeup">
+                <h2><%= book.author %></h2>
+              </div>
+            </div>
+          </div>
+          <hr />
+        <% }); %>
+      <% } else { %>
+        <!-- Render a single book -->
+        <div class="booksContent">
+          <div class="bookReview" id="<%= books.id %>">
+            <img 
+              src="<%= books.thumbnail ? books.thumbnail : 'images/image-regular.svg' %>" 
+              alt="Book cover" 
+              class="book-thumbnail"
+              onerror="this.src='images/image-regular.svg';"
+            />
+            <div class="writeup">
+              <h2><%= books.title %></h2>
+              <p class="book-review"><%= books.review %></p>
+              <p><%= new Date(books.published_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %></p>
+            </div>
+          </div>
+    
+          <div class="author" id="<%= books.id %>">
+            <div>
+              <h2><%= books.author %></h2>
+            </div>
+          </div>
+          <div class="buttons">
+            <button class="update-button" data-id="<%= books.id %>"> update review</button>
+            <button class="delete-button" data-id="<%= books.id %>"> delete book</button>
+          </div>
+        </div>
+        <hr />
+      <% } %>
+    </div>
+    
+      
+      
+    </div>
+    <script src="/js/main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyBooks/newBook</title>
+  <link rel="icon" href="/assets/icons/book-solid.svg" />
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="header">
+      <div class="tab-view">
+          <div class="tab-button" id="nav-button">
+            <img src="/images/align-left-solid.svg" alt="Navigation" />
+          </div>
+          <div class="tab-button" id="home-button">
+              <p>HomePage</p>
+            <img src="images/house-solid.svg" alt="Add" />
+          </div>
+      </div>
+      <div class="search">
+        <input 
+        id="book-input" 
+        type="text" 
+        autocomplete="off" 
+        draggable="false" 
+        spellcheck="false" 
+        placeholder="Search a book online . . .">
+        <div id="loading-dots" class="loading-dots hidden">
+          <span></span><span></span><span></span>
+        </div>
+        <div id="suggestions">
+        </div>
+      </div> 
+      <div class="sidebar">
+        <div class="books">
+          <div id="books-container">
+            <!-- Dynamic content will be inserted here -->
+          </div>
+        </div>
+      </div>
+    </div> 
+    <div class="mobile-edit-page">
+      <!-- Skeleton Elements -->
+      <div id="mobile-book" class="mobile-book">
+        <div class="skeleton skeleton-img"></div>
+       <div class="text">
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+       </div>
+      </div>
+      <div id="book-mobile" class="book-mobile">
+        <img id="mobile-book-thumbnail" src="images/image-regular.svg" alt="Book Thumbnail">
+        <div class="p">
+          <p id="mobile-book-title">Title</p>
+          <p id="mobile-book-author">Author</p>
+          <p id="mobile-book-published-date">Published Date</p>
+        </div>
+      </div>
+     <div class="skeleton skeleton-textarea"></div>
+     <div class="submit-form">
+     <form id="form" action="/submit-review" method="POST"  enctype="multipart/form-data">
+      <textarea 
+      type="text" 
+      id="mobile-post"
+      name="postContent" 
+      style="height: 40px;"
+      placeholder="<%= locals.error? error : "Write out your review" %>" ></textarea>
+    </form>
+ <button id="mobile-button"><img src="images/pen-fancy-solid.svg"></button>
+     </div>
+  </div>
+
+  <div class="desktop-edit-page">
+      <div class="review">
+        <div class="book">
+          <img id="book-thumbnail" src="images/image-regular.svg" alt="Book Thumbnail">
+          <div class="p">
+            <p id="book-title">Title</p>
+            <p id="book-author">Author</p>
+            <p id="book-published-date">Published Date</p>
+          </div>
+        </div>
+        <form id="form" action="/submit-review" method="POST" enctype="multipart/form-data">
+          <textarea type="text" id="postContent" name="postContent" placeholder="<%= locals.error? error : "Write out your review" %>"></textarea>
+          <!-- Include any additional form fields or buttons here -->
+        </form>
+      </div>
+  </div>
+  <script src="/js/main.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
