@@ -9,7 +9,7 @@ dotenv.config();
 
 
 const app = express();
-const port = 3000;
+const port =process.env.PORT || 3000;
 
 const API_URL = 'https://www.googleapis.com/books/v1/volumes';
 const API_KEY = process.env.API_KEY;
