@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const bookSearch = document.getElementById('book-search');
   const loadingDots = document.getElementById("loading-dots");
   const bookMobile = document.getElementById('book-mobile')
+  const mobileForm = document.getElementById('submit-form')
+  const form = document.getElementById('form')
   const mobileBook = document.querySelector('.mobile-book')
+  const skeletonTextarea = document.getElementById('skeleton-textarea')
   const updateButton = document.querySelectorAll(".update-button")
   const deleteButton = document.querySelectorAll(".delete-button")
   const mobileBreakpoint = 1020; 
@@ -150,31 +153,6 @@ deleteButton.forEach(button => {
   });
 });
 
-
-  // Function to automatically resize the textarea
-if(mobilePostContent){
-function autoResize(textarea) {
-  textarea.style.height = 'auto'; 
-  const newHeight = Math.min(textarea.scrollHeight, 150) + 'px'; 
-  textarea.style.height = newHeight;
-}
-
-const textarea = document.getElementById('mobile-post');
-autoResize(textarea)
-const observer = new MutationObserver(() => {
-  autoResize(textarea);
-});
-
-observer.observe(textarea, {
-  childList: true,
-  subtree: true,
-  characterData: true
-});
-
-textarea.addEventListener('input', () => {
-  autoResize(textarea);
-}, { passive: true });
-}
 
 
   // Function to handle viewport changes for mobile vs desktop
@@ -384,6 +362,12 @@ textarea.addEventListener('input', () => {
     }
     if (mobileBook) {
       mobileBook.classList.toggle('hide-mobile-book');
+    }
+    if(skeletonTextarea){
+      skeletonTextarea.classList.remove("skeleton-textarea")
+      skeletonTextarea.classList.add('hide-skeleton-textarea')
+      mobileForm.classList.add("show-form")
+      form.classList.add("show-form")
     }
   }
 

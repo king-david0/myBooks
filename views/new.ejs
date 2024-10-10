@@ -60,9 +60,9 @@
           <p id="mobile-book-published-date">Published Date</p>
         </div>
       </div>
-     <div class="skeleton skeleton-textarea"></div>
-     <div class="submit-form">
-     <form id="form" action="/submit-review" method="POST"  enctype="multipart/form-data">
+     <div id ="skeleton-textarea" class="skeleton skeleton-textarea"></div>
+
+     <form id="form" class="form" action="/submit-review" method="POST"  enctype="multipart/form-data">
       <textarea 
       type="text" 
       id="mobile-post"
@@ -70,7 +70,8 @@
       style="height: 40px;"
       placeholder="<%= locals.error? error : "Write out your review" %>" ></textarea>
     </form>
- <button id="mobile-button"><img src="images/pen-fancy-solid.svg"></button>
+    <div id="submit-form" class="submit-form">   
+ <button  id="mobile-button" class="mobile-button">Save Book Review</button>
      </div>
   </div>
 

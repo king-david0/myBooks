@@ -72,7 +72,7 @@
         <% }); %>
       <% } else { %>
         <!-- Render a single book -->
-        <div class="booksContent">
+        <div id="booksContent" class="booksContent">
           <div class="bookReview" id="<%= books.id %>">
             <img 
               src="<%= books.thumbnail ? books.thumbnail : 'images/image-regular.svg' %>" 
@@ -86,18 +86,11 @@
               <p><%= new Date(books.published_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %></p>
             </div>
           </div>
-    
-          <div class="author" id="<%= books.id %>">
-            <div>
-              <h2><%= books.author %></h2>
-            </div>
-          </div>
           <div class="buttons">
             <button class="update-button" data-id="<%= books.id %>"> update review</button>
             <button class="delete-button" data-id="<%= books.id %>"> delete book</button>
           </div>
         </div>
-        <hr />
       <% } %>
     </div>
     
